@@ -38,7 +38,7 @@ export class ProductsController {
     if (!file) {
       throw new BadRequestException('Nenhum arquivo recebido');
     }
-    const filePath = `http://localhost:3000/uploads/${file.filename}`;
+    const filePath = `http://165.154.213.121:3000/uploads/${file.filename}`;
     return { url: filePath };
   }
 
