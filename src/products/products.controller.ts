@@ -38,7 +38,7 @@ export class ProductsController {
     if (!file) {
       throw new BadRequestException('Nenhum arquivo recebido');
     }
-    const filePath = `http://165.154.213.121:3000/uploads/${file.filename}`;
+    const filePath = `https://apitesteaddimition.online/uploads/${file.filename}`;
     return { url: filePath };
   }
 
