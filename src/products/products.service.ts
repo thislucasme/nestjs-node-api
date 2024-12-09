@@ -9,24 +9,49 @@ import { Repository } from 'typeorm';
 export class ProductsService {
   constructor(
     @InjectRepository(Product) private productRepository: Repository<Product>,
-  ){}
+  ) { }
 
   create(product: Partial<Product>, userId: number) {
-    return this.productRepository.save({ ...product, user: { id: userId } });
+    try {
+      return this.productRepository.save({ ...product, user: { id: userId } });
+    } catch (error: any) {
+      console.error(error)
+      throw new Error('Error while creating product')
+    }
   }
 
   findAll(userId: number) {
-    return this.productRepository.find({ where: { user: { id: userId } } });
+    try {
+      return this.productRepository.find({ where: { user: { id: userId } } });
+    } catch (error: any) {
+      console.error(error)
+      throw new Error('Error while fetching products')
+    }
   }
 
   update(id: number, product: Partial<Product>, userId: number) {
-    return this.productRepository.update({ id, user: { id: userId } }, product);
+    try {
+      return this.productRepository.update({ id, user: { id: userId } }, product);
+    } catch (error: any) {
+      console.error(error)
+      throw new Error('Error while updating products')
+    }
   }
 
   remove(id: number, userId: number) {
-    return this.productRepository.delete({ id, user: { id: userId } });
+    try {
+     return this.productRepository.delete({ id, user: { id: userId } });
+    } catch (error: any) {
+      console.error(error)
+      throw new Error('Error while deleting products')
+    }
   }
   handleFileUpload(file: Express.Multer.File) {
-    return { message: 'File uploaded successfully', filePath: file.path };
+    try {
+      return { message: 'File uploaded successfully', filePath: file.path };
+    } catch (error: any) {
+      console.error(error)
+      throw new Error('Error while updating products')
+    }
   }
 }
